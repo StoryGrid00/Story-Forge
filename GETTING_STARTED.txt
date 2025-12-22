@@ -1,0 +1,145 @@
+╔═══════════════════════════════════════════════════════════════╗
+║                                                               ║
+║                    STORYFORGE - STANDALONE                    ║
+║                                                               ║
+║              7-Point Plot Structure Story Tool                ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
+
+
+🚀 QUICK START (3 EASY STEPS)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Double-click "StoryForge.html"
+2. It opens in your browser
+3. Start writing!
+
+That's it! No installation needed!
+
+
+✨ WHAT YOU CAN DO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Develop stories using the 7-Point Plot Structure
+✓ Create detailed character profiles
+✓ Build your story world
+✓ Track timelines and events
+✓ Manage themes and conflicts
+✓ Set writing goals
+✓ Store research notes
+✓ Collect visual references
+✓ Work on multiple stories
+✓ Export your work for backup
+✓ Use dark mode for night writing
+
+
+💾 YOUR DATA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Saved automatically in your browser
+• Stays on YOUR computer
+• No internet needed
+• Complete privacy
+• REMEMBER TO EXPORT REGULARLY FOR BACKUPS!
+
+
+📱 WORKS ON
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Windows
+✓ Mac
+✓ Linux
+✓ iPad / Android Tablets
+✓ Phones (better on larger screens)
+
+
+⚠️ IMPORTANT TIPS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. EXPORT YOUR STORIES REGULARLY
+   Click "Export" button → Save JSON file → Keep it safe!
+
+2. DON'T CLEAR BROWSER DATA
+   Clearing browser data will delete your stories!
+
+3. USE THE SAME BROWSER
+   Your data is tied to the browser you use
+
+4. BACKUP TO CLOUD
+   Save exports to Dropbox, Google Drive, etc.
+
+
+🎨 NAVIGATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Left Sidebar:
+• Story selector dropdown
+• New Story button
+• Section tabs:
+  - 7-Point Structure
+  - Characters
+  - Conflicts
+  - Themes
+  - Timeline
+  - World Building
+  - Writing Goals
+  - Research
+  - Visual References
+
+Top Right:
+• Export button
+• Dark/Light mode toggle
+
+
+📚 THE 7-POINT STRUCTURE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Hook - The Beginning
+2. Plot Turn 1 - Inciting Incident
+3. Pinch 1 - Raising Stakes
+4. Midpoint - Reactive to Proactive
+5. Pinch 2 - Darkest Hour
+6. Plot Turn 2 - Key to Victory
+7. Resolution - New Status Quo
+
+
+🆘 TROUBLESHOOTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Problem: File won't open
+Solution: Right-click → Open With → Chrome/Firefox/Safari
+
+Problem: Data disappeared
+Solution: Check if you cleared browser data
+         Restore from your last export
+
+Problem: Looks broken
+Solution: Press Ctrl+F5 (Windows) or Cmd+Shift+R (Mac)
+         Try a different browser
+
+
+💡 PRO TIPS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Start with your logline (one-sentence summary)
+• Work non-linearly - jump between sections
+• Use the notes fields liberally
+• Export weekly (set a reminder!)
+• Try dark mode for late-night writing sessions
+• Use on a tablet for a great writing experience
+
+
+📧 SHARING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Yes! You can share StoryForge.html with anyone.
+It's a single file that works anywhere.
+
+
+═══════════════════════════════════════════════════════════════
+
+                    HAPPY WRITING! 📚✨
+
+═══════════════════════════════════════════════════════════════
+
+For more details, see README.md
