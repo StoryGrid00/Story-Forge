@@ -1,0 +1,24 @@
+{
+  "name": "StoryForge - 7-Point Plot Structure",
+  "short_name": "StoryForge",
+  "description": "A powerful tool for writers to craft compelling stories using the 7-Point Plot Structure framework",
+  "start_url": "./StoryForge.html",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#FF6B4A",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

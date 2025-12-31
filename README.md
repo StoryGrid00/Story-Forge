@@ -1,219 +1,188 @@
-# StoryForge - Standalone Edition
+# StoryForge - Enhanced Edition
 
-**A complete story development tool using the 7-Point Plot Structure framework**
+## Overview
 
-## 🎉 Quick Start
+StoryForge is a powerful Progressive Web App (PWA) designed for writers to craft compelling stories using the proven 7-Point Plot Structure framework. This enhanced edition includes improved world-building features and professional branding with custom icons.
 
-**Simply double-click `StoryForge.html` to open it in your browser!**
+## What's Included
 
-That's it! No installation, no server, no command line needed.
+This package contains everything you need to run StoryForge as a standalone application:
 
----
+- **StoryForge.html** - Main application file (601 KB)
+- **Icon files** - Complete set of icons for all platforms
+  - favicon.ico - Browser tab icon
+  - icon-16.png - Small favicon (16x16)
+  - icon-32.png - Standard favicon (32x32)
+  - apple-touch-icon.png - iOS home screen icon (180x180)
+  - icon-192.png - PWA icon for Android (192x192)
+  - icon-512.png - PWA icon for high-res displays (512x512)
+- **manifest.json** - PWA configuration file
+- **Documentation** - CHANGES.md and README_MODIFICATIONS.md
 
-## ✨ Features
+## Features
 
-### Story Development Tools
-- **7-Point Plot Structure** - Dan Wells' proven narrative framework
-- **Character Development** - Create detailed character profiles and arcs
-- **World Building** - Design locations, cultures, magic systems, and more
+### Core Features
+- **7-Point Plot Structure** - Develop your story using Dan Wells' proven framework
+- **Character Development** - Create and manage detailed character profiles
+- **World Building** - Build immersive story worlds with category-specific fields
 - **Timeline Management** - Track events chronologically
-- **Themes & Conflicts** - Develop central themes and story conflicts
-- **Writing Goals** - Set and track word count targets
-- **Research Notes** - Organize your research in one place
-- **Visual References** - Build a gallery of inspiration images
+- **Theme Tracking** - Identify and develop story themes
+- **Conflict Management** - Organize story conflicts
+- **Writing Goals** - Set and track your writing progress
+- **Research Notes** - Collect and organize research
+- **Visual References** - Store character designs and location inspiration
 
-### Technical Features
-- **Multi-Story Management** - Work on multiple stories simultaneously
-- **Auto-Save** - All data saved automatically to your browser
-- **Export** - Export your work as JSON for backup
-- **Dark Mode** - Easy on the eyes for night writing
-- **Offline Ready** - Works completely offline, no internet needed
-- **Cross-Platform** - Works on Windows, Mac, Linux, iOS, Android
+### Enhanced World Building
+Each world-building category now features customized fields:
 
----
+- **Location** - Geography, population, economy, government, landmarks
+- **Culture** - Values, social structure, traditions, language, arts
+- **Magic System** - Source, mechanics, capabilities, limitations, rules
+- **Technology** - Function, requirements, availability, impact
+- **Historical Event** - Participants, causes, events, consequences
+- **Custom** - Flexible fields for unique elements
 
-## 📖 How to Use
+### PWA Features
+- **Offline Support** - Works completely offline after first load
+- **Installable** - Add to home screen on mobile and desktop
+- **Responsive Design** - Optimized for all screen sizes
+- **Local Storage** - Your data stays on your device
+- **Professional Icons** - Custom StoryForge branding throughout
 
-### Opening the App
-1. Locate `StoryForge.html` on your computer
-2. Double-click to open in your default browser
-3. Start creating!
+## Installation & Usage
 
-### Recommended Browsers
-- ✅ Chrome / Edge (Recommended)
-- ✅ Firefox
-- ✅ Safari
-- ✅ Opera
+### Quick Start
+1. Extract all files to a folder on your computer
+2. Open **StoryForge.html** in any modern web browser
+3. Start writing!
 
-### Creating Your First Story
-1. The app opens with a default story "My First Story"
-2. Click the story title to rename it
-3. Fill in Author, Genre, and Logline
-4. Navigate between sections using the sidebar
-5. Start developing your story!
+### Install as PWA (Recommended)
 
-### Managing Multiple Stories
-- Click **New Story** to create additional stories
-- Use the dropdown to switch between stories
-- Each story is saved independently
+**On Desktop (Chrome/Edge):**
+1. Open StoryForge.html in your browser
+2. Look for the install icon in the address bar
+3. Click "Install" to add StoryForge to your applications
+4. Launch from your desktop or start menu
 
-### Exporting Your Work
-1. Click the **Export** button in the top-right
-2. Choose JSON format for backup
-3. Save the file to your computer
-4. Import later by using the import feature
+**On Mobile (iOS):**
+1. Open StoryForge.html in Safari
+2. Tap the Share button
+3. Select "Add to Home Screen"
+4. Tap "Add" to install
 
----
+**On Mobile (Android):**
+1. Open StoryForge.html in Chrome
+2. Tap the menu (three dots)
+3. Select "Add to Home screen"
+4. Tap "Add" to install
 
-## 💾 Data Storage
+### Bookmarking
+For quick access without installation:
+1. Open StoryForge.html in your browser
+2. Bookmark the page (Ctrl+D or Cmd+D)
+3. Access from your bookmarks anytime
 
-**All your data is stored locally in your browser using localStorage.**
+## Technical Specifications
 
-### Important Notes:
-- ✅ Your data stays on YOUR computer
-- ✅ No internet connection required
-- ✅ No data sent to any server
-- ✅ Complete privacy
-- ⚠️ Clearing browser data will delete your stories
-- ⚠️ Export regularly for backups!
+**Browser Compatibility:**
+- Chrome 90+
+- Firefox 88+
+- Safari 14+
+- Edge 90+
 
-### Backup Recommendations:
-1. Export your stories regularly
-2. Keep the JSON files in a safe location
-3. Consider cloud storage (Dropbox, Google Drive) for backups
+**Storage:**
+- Uses browser Local Storage
+- Data persists between sessions
+- Stored locally on your device
 
----
+**File Size:**
+- HTML: 601 KB
+- Icons: ~4.5 MB total
+- Complete package: ~5.1 MB
 
-## 🎨 Design Philosophy
+**Performance:**
+- Loads instantly after first visit
+- No internet connection required after initial load
+- Responsive on all devices
 
-**Organic Minimalism with Narrative Depth**
+## Data Management
 
-StoryForge uses a warm, earthy color palette inspired by classic storytelling:
-- **Terracotta** - Grounded and warm
-- **Amber** - Energetic highlights
-- **Olive** - Natural balance
-- **Parchment** - Classic writing surface
+### Backup Your Work
+Your story data is stored in your browser's local storage. To backup:
+1. Click the **Export** button in the sidebar
+2. Choose your export format (PDF recommended)
+3. Save the file to a safe location
 
-Typography:
-- **Crimson Pro** - Elegant serif for titles
-- **Source Sans Pro** - Clean sans-serif for body text
-- **Caveat** - Handwritten notes style
-
----
-
-## 🔧 Technical Details
-
-### Single-File Architecture
-- **File Size**: ~596 KB
-- **Format**: Single HTML file with embedded CSS and JavaScript
-- **Framework**: React (bundled)
-- **Storage**: Browser localStorage
-- **No Dependencies**: Everything is self-contained
-
-### Browser Compatibility
-- Modern browsers with ES6+ support
-- localStorage API required
-- Works on mobile browsers
-
----
-
-## 📝 The 7-Point Plot Structure
-
-Developed by Dan Wells, this framework helps you craft compelling narratives:
-
-1. **Hook** - The Beginning (Status Quo)
-2. **Plot Turn 1** - The Inciting Incident
-3. **Pinch 1** - Raising the Stakes
-4. **Midpoint** - From Reactive to Proactive
-5. **Pinch 2** - The Darkest Hour
-6. **Plot Turn 2** - The Key to Victory
-7. **Resolution** - The New Status Quo
-
----
-
-## 🚀 Sharing & Distribution
-
-### Can I share this file?
-Yes! You can share `StoryForge.html` with anyone. It's a single file that works anywhere.
-
-### Can I use this commercially?
-Yes! Use it for your writing projects, whether personal or commercial.
-
-### Can I modify it?
-This is a compiled version. For source code modifications, you would need the original development files.
-
----
-
-## 💡 Tips & Tricks
-
-### Keyboard Shortcuts
-- `Tab` - Navigate between fields
-- `Ctrl/Cmd + S` - Auto-saves (always enabled)
-- `Esc` - Close dialogs
+### Important Notes
+- Data is tied to the browser and file location
+- Moving the HTML file to a different location creates a new storage space
+- Using a different browser requires exporting/importing data
+- Clearing browser data will delete your stories
 
 ### Best Practices
-1. **Start with the Logline** - One sentence that captures your story
-2. **Work Non-Linearly** - Jump between sections as inspiration strikes
-3. **Use Notes Fields** - Jot down ideas you'll develop later
-4. **Regular Exports** - Backup your work weekly
-5. **Dark Mode for Night Writing** - Easier on the eyes
+- Export your work regularly
+- Keep backups in multiple locations
+- Test the export feature early
+- Consider using cloud storage for exported files
 
-### Mobile Usage
-- Works great on tablets (iPad, Android tablets)
-- Phones work but better for reading than extensive writing
-- Consider landscape orientation for better layout
+## Customization
 
----
+### Theme
+StoryForge uses a dark theme optimized for long writing sessions. The theme color (#FF6B4A - coral orange) is used throughout the interface and in the PWA branding.
 
-## 🐛 Troubleshooting
+### Icons
+All icons feature the StoryForge book logo in coral orange on a dark charcoal background, providing consistent branding across all platforms.
 
-### App won't open
-- Ensure you're using a modern browser
-- Try right-click → Open With → [Browser Name]
-- Check that JavaScript is enabled
+## Troubleshooting
 
-### Data disappeared
-- Check if you're using the same browser
-- Check if browser data was cleared
-- Restore from your last JSON export
+**Icons not showing:**
+- Ensure all icon files are in the same folder as StoryForge.html
+- Clear your browser cache and reload
+- Check that manifest.json is present
 
-### Export not working
-- Check browser's download settings
-- Ensure pop-ups aren't blocked
-- Try a different browser
+**Data not saving:**
+- Check that your browser allows local storage
+- Ensure you're not in private/incognito mode
+- Verify you have sufficient storage space
 
-### Styling looks broken
-- Hard refresh: `Ctrl+F5` (Windows) or `Cmd+Shift+R` (Mac)
+**PWA not installing:**
+- Ensure you're using a supported browser
+- Check that all files are present
+- Try accessing via HTTPS if using a web server
+
+**Performance issues:**
+- Close unnecessary browser tabs
 - Clear browser cache
-- Try opening in a different browser
+- Ensure sufficient device memory
+
+## Updates & Modifications
+
+This is version 2.0 of StoryForge with the following enhancements:
+- Removed duplicate World Building header
+- Added category-specific world-building fields
+- Integrated custom icons and PWA branding
+- Improved mobile responsiveness
+- Enhanced PWA manifest configuration
+
+For detailed change information, see CHANGES.md.
+
+## Credits
+
+**Original StoryForge:** 7-Point Plot Structure Tool  
+**Enhanced Edition:** December 2025  
+**Framework:** Dan Wells' 7-Point Plot Structure  
+**Icons:** Custom designed StoryForge branding
+
+## License & Usage
+
+StoryForge is provided as-is for personal and educational use. Feel free to use it for your writing projects, share it with fellow writers, and modify it for your needs.
+
+## Support
+
+For questions, issues, or feedback about this enhanced edition, please refer to the documentation files included in this package.
 
 ---
 
-## 📄 File Information
+**Happy Writing!** 📖✨
 
-- **Filename**: StoryForge.html
-- **Version**: Standalone Edition
-- **Size**: 596 KB
-- **Format**: Single HTML file
-- **Dependencies**: None (all embedded)
-
----
-
-## 🌟 About StoryForge
-
-StoryForge is a comprehensive story development tool designed for writers who want structure without sacrificing creativity. Whether you're writing novels, screenplays, short stories, or any narrative work, StoryForge helps you organize your ideas and develop compelling stories.
-
-**Happy Writing! 📚✨**
-
----
-
-## 📞 Support
-
-For questions, feedback, or issues:
-- This is a standalone version with no official support channel
-- Community forums and writing groups are great places to discuss usage
-- Export your data regularly as a precaution
-
----
-
-*StoryForge - Crafting Stories, One Plot Point at a Time*
+May your stories be compelling, your characters memorable, and your worlds immersive.
