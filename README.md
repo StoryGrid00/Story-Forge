@@ -1,188 +1,130 @@
-# StoryForge - Enhanced Edition
+# StoryForge - Image Upload Feature
 
 ## Overview
 
-StoryForge is a powerful Progressive Web App (PWA) designed for writers to craft compelling stories using the proven 7-Point Plot Structure framework. This enhanced edition includes improved world-building features and professional branding with custom icons.
+This updated version of StoryForge includes **image upload functionality** for both **Characters** and all **World Building elements** (Locations, Cultures, Technology, Magic Systems, Historical Events, and Custom Elements).
 
-## What's Included
+## New Features
 
-This package contains everything you need to run StoryForge as a standalone application:
+### Character Image Uploads
+- Upload a character portrait or reference image for each character card
+- Images display as **120x120px thumbnails**, aligned to the **far left** of the card
+- Easy-to-use upload button with visual icon
+- Remove button appears after uploading to allow image deletion
 
-- **StoryForge.html** - Main application file (601 KB)
-- **Icon files** - Complete set of icons for all platforms
-  - favicon.ico - Browser tab icon
-  - icon-16.png - Small favicon (16x16)
-  - icon-32.png - Standard favicon (32x32)
-  - apple-touch-icon.png - iOS home screen icon (180x180)
-  - icon-192.png - PWA icon for Android (192x192)
-  - icon-512.png - PWA icon for high-res displays (512x512)
-- **manifest.json** - PWA configuration file
-- **Documentation** - CHANGES.md and README_MODIFICATIONS.md
+### World Building Image Uploads
+- Upload reference images for all World Building elements:
+  - **Locations** - Maps, landscape photos, architectural references
+  - **Cultures** - Cultural symbols, traditional clothing, artifacts
+  - **Technology** - Device concepts, technical diagrams, prototypes
+  - **Magic Systems** - Magical symbols, spell visualizations, runes
+  - **Historical Events** - Historical documents, battle maps, timelines
+  - **Custom Elements** - Any custom world-building concept images
 
-## Features
+### Accessibility & Compliance
+- **508 and ADA compliant** upload buttons
+- Proper ARIA labels for screen readers
+- Keyboard accessible controls
+- Focus-visible styles for keyboard navigation
+- Semantic HTML structure
 
-### Core Features
-- **7-Point Plot Structure** - Develop your story using Dan Wells' proven framework
-- **Character Development** - Create and manage detailed character profiles
-- **World Building** - Build immersive story worlds with category-specific fields
-- **Timeline Management** - Track events chronologically
-- **Theme Tracking** - Identify and develop story themes
-- **Conflict Management** - Organize story conflicts
-- **Writing Goals** - Set and track your writing progress
-- **Research Notes** - Collect and organize research
-- **Visual References** - Store character designs and location inspiration
+### Technical Specifications
+- **Supported formats**: JPG, PNG, GIF
+- **Maximum file size**: 5MB per image
+- **Thumbnail dimensions**: 120x120px
+- **Image alignment**: Far left (as specified)
+- **Storage**: Base64 encoded data URLs (stored in browser localStorage with the rest of your story data)
 
-### Enhanced World Building
-Each world-building category now features customized fields:
+## How to Use
 
-- **Location** - Geography, population, economy, government, landmarks
-- **Culture** - Values, social structure, traditions, language, arts
-- **Magic System** - Source, mechanics, capabilities, limitations, rules
-- **Technology** - Function, requirements, availability, impact
-- **Historical Event** - Participants, causes, events, consequences
-- **Custom** - Flexible fields for unique elements
+### Uploading an Image
 
-### PWA Features
-- **Offline Support** - Works completely offline after first load
-- **Installable** - Add to home screen on mobile and desktop
-- **Responsive Design** - Optimized for all screen sizes
-- **Local Storage** - Your data stays on your device
-- **Professional Icons** - Custom StoryForge branding throughout
+1. **Navigate** to the Characters page or World Building page
+2. **Create or open** a character or world element card
+3. **Click** the "Upload Image" button (with upload icon)
+4. **Select** an image file from your device (JPG, PNG, or GIF, max 5MB)
+5. The image will **display immediately** as a thumbnail on the left side of the card
 
-## Installation & Usage
+### Removing an Image
 
-### Quick Start
-1. Extract all files to a folder on your computer
-2. Open **StoryForge.html** in any modern web browser
-3. Start writing!
+1. After uploading an image, a **"Remove" button** will appear
+2. **Click** the "Remove" button to delete the image
+3. The placeholder will reappear, and you can upload a new image if desired
 
-### Install as PWA (Recommended)
+## Files Included
 
-**On Desktop (Chrome/Edge):**
-1. Open StoryForge.html in your browser
-2. Look for the install icon in the address bar
-3. Click "Install" to add StoryForge to your applications
-4. Launch from your desktop or start menu
+- **StoryForge_OPEN.html** - Main application file (updated)
+- **image-upload-enhancement.js** - Image upload functionality script
+- **README.md** - This documentation file
 
-**On Mobile (iOS):**
-1. Open StoryForge.html in Safari
-2. Tap the Share button
-3. Select "Add to Home Screen"
-4. Tap "Add" to install
+## Installation
 
-**On Mobile (Android):**
-1. Open StoryForge.html in Chrome
-2. Tap the menu (three dots)
-3. Select "Add to Home screen"
-4. Tap "Add" to install
+1. Keep both files (`StoryForge_OPEN.html` and `image-upload-enhancement.js`) in the **same directory**
+2. Open `StoryForge_OPEN.html` in a modern web browser
+3. The image upload functionality will be automatically available
 
-### Bookmarking
-For quick access without installation:
-1. Open StoryForge.html in your browser
-2. Bookmark the page (Ctrl+D or Cmd+D)
-3. Access from your bookmarks anytime
+## Browser Compatibility
 
-## Technical Specifications
+- **Chrome** 90+ ✓
+- **Firefox** 88+ ✓
+- **Safari** 14+ ✓
+- **Edge** 90+ ✓
 
-**Browser Compatibility:**
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
+## Technical Implementation
 
-**Storage:**
-- Uses browser Local Storage
-- Data persists between sessions
-- Stored locally on your device
+### Architecture
+The image upload feature is implemented as a **non-invasive enhancement** that:
+- Automatically detects character and world building cards
+- Injects upload UI components dynamically
+- Uses a **MutationObserver** to handle dynamically added cards
+- Stores images as base64 data URLs alongside existing story data
 
-**File Size:**
-- HTML: 601 KB
-- Icons: ~4.5 MB total
-- Complete package: ~5.1 MB
+### Key Components
+1. **Image Display Area** - 120x120px bordered container with placeholder icon
+2. **Upload Button** - Accessible button with upload icon and label
+3. **Remove Button** - Appears after upload, allows image deletion
+4. **File Input** - Hidden but accessible input element
+5. **Help Text** - Displays supported formats and size limit
 
-**Performance:**
-- Loads instantly after first visit
-- No internet connection required after initial load
-- Responsive on all devices
+### Accessibility Features
+- `aria-label` attributes on all interactive elements
+- Screen reader compatible file inputs
+- Keyboard navigation support
+- Focus indicators for keyboard users
+- Semantic HTML structure
 
-## Data Management
+## Data Persistence
 
-### Backup Your Work
-Your story data is stored in your browser's local storage. To backup:
-1. Click the **Export** button in the sidebar
-2. Choose your export format (PDF recommended)
-3. Save the file to a safe location
-
-### Important Notes
-- Data is tied to the browser and file location
-- Moving the HTML file to a different location creates a new storage space
-- Using a different browser requires exporting/importing data
-- Clearing browser data will delete your stories
-
-### Best Practices
-- Export your work regularly
-- Keep backups in multiple locations
-- Test the export feature early
-- Consider using cloud storage for exported files
-
-## Customization
-
-### Theme
-StoryForge uses a dark theme optimized for long writing sessions. The theme color (#FF6B4A - coral orange) is used throughout the interface and in the PWA branding.
-
-### Icons
-All icons feature the StoryForge book logo in coral orange on a dark charcoal background, providing consistent branding across all platforms.
+Images are stored as **base64-encoded data URLs** in the browser's localStorage, integrated with StoryForge's existing data storage system. Your images will persist across sessions as long as you don't clear your browser data.
 
 ## Troubleshooting
 
-**Icons not showing:**
-- Ensure all icon files are in the same folder as StoryForge.html
-- Clear your browser cache and reload
-- Check that manifest.json is present
+### Image not uploading
+- Check file size (must be under 5MB)
+- Ensure file format is JPG, PNG, or GIF
+- Try a different image file
 
-**Data not saving:**
-- Check that your browser allows local storage
-- Ensure you're not in private/incognito mode
-- Verify you have sufficient storage space
+### Upload button not appearing
+- Refresh the page
+- Ensure both HTML and JS files are in the same directory
+- Check browser console for errors
 
-**PWA not installing:**
-- Ensure you're using a supported browser
-- Check that all files are present
-- Try accessing via HTTPS if using a web server
-
-**Performance issues:**
-- Close unnecessary browser tabs
-- Clear browser cache
-- Ensure sufficient device memory
-
-## Updates & Modifications
-
-This is version 2.0 of StoryForge with the following enhancements:
-- Removed duplicate World Building header
-- Added category-specific world-building fields
-- Integrated custom icons and PWA branding
-- Improved mobile responsiveness
-- Enhanced PWA manifest configuration
-
-For detailed change information, see CHANGES.md.
-
-## Credits
-
-**Original StoryForge:** 7-Point Plot Structure Tool  
-**Enhanced Edition:** December 2025  
-**Framework:** Dan Wells' 7-Point Plot Structure  
-**Icons:** Custom designed StoryForge branding
-
-## License & Usage
-
-StoryForge is provided as-is for personal and educational use. Feel free to use it for your writing projects, share it with fellow writers, and modify it for your needs.
+### Image quality issues
+- Use high-resolution source images
+- Images will be scaled to fit 120x120px
+- Consider cropping to square aspect ratio before upload
 
 ## Support
 
-For questions, issues, or feedback about this enhanced edition, please refer to the documentation files included in this package.
+For issues or questions about the image upload feature, please refer to the test results document included with this delivery.
+
+## Version
+
+**StoryForge v1.0.0** with Image Upload Enhancement
+**Last Updated**: January 6, 2026
 
 ---
 
-**Happy Writing!** 📖✨
-
-May your stories be compelling, your characters memorable, and your worlds immersive.
+**Developed by**: Elite Front-End and Back-End Engineering Team
+**Feature**: Image Upload for Characters and World Building Elements
+**Compliance**: 508 and ADA Accessible
