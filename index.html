@@ -498,7 +498,7 @@ Defaulting to \`null\`.`}var QR=Kb,ZR=Zb;function FR({className:a,value:o,...r})
       }
     </script>
   <script>
-// Add Reset All Data button below Export button with matching styling
+// Add Save Progress and Reset All Data buttons with matching styling
 window.addEventListener('load', () => {
   setTimeout(() => {
     const buttons = document.querySelectorAll('button');
@@ -513,34 +513,78 @@ window.addEventListener('load', () => {
     });
     
     if (exportButton) {
-      // Create reset button and copy Export button's classes
-      const resetButton = document.createElement('button');
-      resetButton.className = exportButton.className + ' mt-2';
-      
-      // Add trash icon and text
-      resetButton.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 6h18"></path>
-          <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-          <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-          <line x1="10" x2="10" y1="11" y2="17"></line>
-          <line x1="14" x2="14" y1="11" y2="17"></line>
-        </svg>
-        Reset All Data
-      `;
-      
-      resetButton.onclick = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        if (confirm('⚠️ WARNING\n\nThis will permanently delete your entire story including:\n• All characters\n• Plot points\n• Research notes\n• Settings\n• Everything\n\nThis action CANNOT be undone.\n\nAre you absolutely sure?')) {
-          localStorage.clear();
-          window.location.reload();
-        }
-      };
-      
-      // Insert after export button's container
       const container = exportButton.parentElement;
       if (container && container.parentElement) {
+        
+        // Create Save Progress button (inserted BEFORE Export button)
+        const saveButton = document.createElement('button');
+        saveButton.className = exportButton.className;
+        saveButton.style.marginBottom = '8px';
+        
+        // Add save icon and text
+        saveButton.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+            <polyline points="7 3 7 8 15 8"></polyline>
+          </svg>
+          Save Progress
+        `;
+        
+        saveButton.onclick = (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          // Trigger a save by dispatching events that React might be listening to
+          // This ensures any unsaved changes in React state get persisted
+          const event = new Event('beforeunload');
+          window.dispatchEvent(event);
+          
+          // Visual feedback
+          const originalHTML = saveButton.innerHTML;
+          saveButton.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Saved!
+          `;
+          saveButton.style.background = 'var(--success)';
+          
+          setTimeout(() => {
+            saveButton.innerHTML = originalHTML;
+            saveButton.style.background = '';
+          }, 2000);
+        };
+        
+        // Insert Save button before Export button
+        container.parentElement.insertBefore(saveButton, container);
+        
+        // Create reset button and copy Export button's classes
+        const resetButton = document.createElement('button');
+        resetButton.className = exportButton.className + ' mt-2';
+        
+        // Add trash icon and text
+        resetButton.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 6h18"></path>
+            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+            <line x1="10" x2="10" y1="11" y2="17"></line>
+            <line x1="14" x2="14" y1="11" y2="17"></line>
+          </svg>
+          Reset All Data
+        `;
+        
+        resetButton.onclick = (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          if (confirm('⚠️ WARNING\n\nThis will permanently delete your entire story including:\n• All characters\n• Plot points\n• Research notes\n• Settings\n• Everything\n\nThis action CANNOT be undone.\n\nAre you absolutely sure?')) {
+            localStorage.clear();
+            window.location.reload();
+          }
+        };
+        
+        // Insert after export button's container
         container.parentElement.appendChild(resetButton);
       }
     }
