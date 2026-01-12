@@ -535,6 +535,26 @@ window.addEventListener('load', () => {
           e.preventDefault();
           e.stopPropagation();
           
+          // Save all uploaded images to localStorage
+          const imageData = {};
+          
+          // Character images removed
+          
+          // Save world element images
+          document.querySelectorAll('.world-element-image-display[data-image-data]').forEach((display, index) => {
+            const cardTitle = display.closest('[data-slot="card"]')?.querySelector('input[placeholder*="Name"]')?.value || `world_${index}`;
+            imageData[`world_${cardTitle}`] = display.dataset.imageData;
+          });
+          
+          // Store in localStorage
+          try {
+            localStorage.setItem('storyforge_images', JSON.stringify(imageData));
+            console.log('Images saved to localStorage:', Object.keys(imageData).length, 'images');
+          } catch (error) {
+            console.error('Failed to save images:', error);
+            alert('Warning: Could not save images. Storage may be full.');
+          }
+          
           // Trigger a save by dispatching events that React might be listening to
           // This ensures any unsaved changes in React state get persisted
           const event = new Event('beforeunload');
@@ -613,37 +633,40 @@ window.addEventListener('load', () => {
     });
   }
   
-  // Add image upload UI to character cards
-  function enhanceCharacterCards() {
+  // Character card image upload removed - thumbnail feature added instead
+
+
+  // Add thumbnail image upload feature to any character card
+  function addThumbnailUpload() {
     // Find all character cards
     const characterCards = document.querySelectorAll('[data-slot="card"]');
     
     characterCards.forEach((card) => {
-      // Check if this is a character card (has role, age, gender inputs)
+      // Check if this is a character card
       const hasCharacterFields = card.querySelector('input[placeholder*="Role"]') || 
                                   card.querySelector('input[placeholder*="Protagonist"]');
       
       if (!hasCharacterFields) return;
       
-      // Check if image upload already exists
-      if (card.querySelector('.character-image-upload')) return;
+      // Check if thumbnail upload already exists
+      if (card.querySelector('.character-thumbnail-upload')) return;
       
-      // Get the character header section
+      // Get the card header
       const cardHeader = card.querySelector('[data-slot="card-header"]');
       if (!cardHeader) return;
       
-      // Create image upload container
-      const imageContainer = document.createElement('div');
-      imageContainer.className = 'character-image-upload flex items-start gap-4 mb-4';
+      // Create thumbnail upload container (compact version)
+      const thumbnailContainer = document.createElement('div');
+      thumbnailContainer.className = 'character-thumbnail-upload flex items-center gap-3 mt-3 p-3 bg-muted/30 rounded-md border border-border';
       
-      // Create image display area (left-aligned)
-      const imageDisplay = document.createElement('div');
-      imageDisplay.className = 'character-image-display flex-shrink-0';
-      imageDisplay.style.cssText = 'width: 120px; height: 120px; border: 2px dashed var(--border); border-radius: 8px; overflow: hidden; background: var(--muted); display: flex; align-items: center; justify-content: center;';
+      // Create thumbnail display (smaller, circular)
+      const thumbnailDisplay = document.createElement('div');
+      thumbnailDisplay.className = 'character-thumbnail-display flex-shrink-0';
+      thumbnailDisplay.style.cssText = 'width: 60px; height: 60px; border: 2px solid var(--border); border-radius: 50%; overflow: hidden; background: var(--muted); display: flex; align-items: center; justify-content: center;';
       
       const placeholderIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      placeholderIcon.setAttribute('width', '48');
-      placeholderIcon.setAttribute('height', '48');
+      placeholderIcon.setAttribute('width', '24');
+      placeholderIcon.setAttribute('height', '24');
       placeholderIcon.setAttribute('viewBox', '0 0 24 24');
       placeholderIcon.setAttribute('fill', 'none');
       placeholderIcon.setAttribute('stroke', 'currentColor');
@@ -651,53 +674,56 @@ window.addEventListener('load', () => {
       placeholderIcon.style.color = 'var(--muted-foreground)';
       placeholderIcon.innerHTML = '<rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>';
       
-      imageDisplay.appendChild(placeholderIcon);
+      thumbnailDisplay.appendChild(placeholderIcon);
       
-      // Create upload button container
-      const uploadContainer = document.createElement('div');
-      uploadContainer.className = 'flex-1 flex flex-col gap-2';
+      // Create controls container
+      const controlsContainer = document.createElement('div');
+      controlsContainer.className = 'flex-1 flex flex-col gap-1';
+      
+      // Create label
+      const label = document.createElement('div');
+      label.className = 'text-sm font-medium';
+      label.textContent = 'Character Thumbnail';
+      
+      // Create button container
+      const buttonContainer = document.createElement('div');
+      buttonContainer.className = 'flex gap-2';
       
       // Create file input (hidden)
       const fileInput = document.createElement('input');
       fileInput.type = 'file';
       fileInput.accept = 'image/*';
       fileInput.className = 'sr-only';
-      fileInput.id = `character-image-${Date.now()}`;
-      fileInput.setAttribute('aria-label', 'Upload character image');
+      fileInput.id = `character-thumbnail-${Date.now()}`;
+      fileInput.setAttribute('aria-label', 'Upload character thumbnail');
       
-      // Create upload button (ADA/508 compliant)
+      // Create upload button (compact)
       const uploadButton = document.createElement('button');
       uploadButton.type = 'button';
-      uploadButton.className = 'inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2';
-      uploadButton.setAttribute('aria-label', 'Choose character image file');
+      uploadButton.className = 'inline-flex items-center justify-center gap-1.5 rounded-md text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring border border-input bg-background hover:bg-accent hover:text-accent-foreground h-7 px-3';
+      uploadButton.setAttribute('aria-label', 'Choose thumbnail image');
       uploadButton.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
           <polyline points="17 8 12 3 7 8"/>
           <line x1="12" x2="12" y1="3" y2="15"/>
         </svg>
-        <span>Upload Image</span>
+        <span>Upload</span>
       `;
       
-      // Create remove button (initially hidden)
+      // Create remove button (compact, initially hidden)
       const removeButton = document.createElement('button');
       removeButton.type = 'button';
-      removeButton.className = 'inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-destructive hover:text-destructive-foreground h-9 px-4 py-2';
+      removeButton.className = 'inline-flex items-center justify-center gap-1.5 rounded-md text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring border border-input bg-background hover:bg-destructive hover:text-destructive-foreground h-7 px-3';
       removeButton.style.display = 'none';
-      removeButton.setAttribute('aria-label', 'Remove character image');
+      removeButton.setAttribute('aria-label', 'Remove thumbnail');
       removeButton.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M3 6h18"/>
           <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
-          <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
         </svg>
         <span>Remove</span>
       `;
-      
-      // Create help text
-      const helpText = document.createElement('p');
-      helpText.className = 'text-xs text-muted-foreground';
-      helpText.textContent = 'JPG, PNG, GIF up to 5MB';
       
       // Handle file selection
       fileInput.addEventListener('change', function(e) {
@@ -720,20 +746,34 @@ window.addEventListener('load', () => {
         const reader = new FileReader();
         reader.onload = function(event) {
           // Clear placeholder
-          imageDisplay.innerHTML = '';
+          thumbnailDisplay.innerHTML = '';
           
           // Create and add image
           const img = document.createElement('img');
           img.src = event.target.result;
-          img.alt = 'Character image';
+          img.alt = 'Character thumbnail';
           img.style.cssText = 'width: 100%; height: 100%; object-fit: cover;';
-          imageDisplay.appendChild(img);
+          thumbnailDisplay.appendChild(img);
           
           // Show remove button
           removeButton.style.display = 'inline-flex';
           
-          // Store image data (you can integrate this with your state management)
-          imageDisplay.dataset.imageData = event.target.result;
+          // Store image data for persistence
+          thumbnailDisplay.dataset.imageData = event.target.result;
+          
+          // Get character name for storage key
+          const nameInput = card.querySelector('input[placeholder*="Name"]');
+          const characterName = nameInput ? nameInput.value : '';
+          if (characterName) {
+            // Save to localStorage immediately
+            try {
+              const savedThumbnails = JSON.parse(localStorage.getItem('storyforge_thumbnails') || '{}');
+              savedThumbnails[characterName] = event.target.result;
+              localStorage.setItem('storyforge_thumbnails', JSON.stringify(savedThumbnails));
+            } catch (error) {
+              console.error('Failed to save thumbnail:', error);
+            }
+          }
         };
         reader.readAsDataURL(file);
       });
@@ -746,8 +786,8 @@ window.addEventListener('load', () => {
       // Handle remove button click
       removeButton.addEventListener('click', () => {
         // Clear image
-        imageDisplay.innerHTML = '';
-        imageDisplay.appendChild(placeholderIcon.cloneNode(true));
+        thumbnailDisplay.innerHTML = '';
+        thumbnailDisplay.appendChild(placeholderIcon.cloneNode(true));
         
         // Hide remove button
         removeButton.style.display = 'none';
@@ -756,26 +796,73 @@ window.addEventListener('load', () => {
         fileInput.value = '';
         
         // Clear stored data
-        delete imageDisplay.dataset.imageData;
+        delete thumbnailDisplay.dataset.imageData;
+        
+        // Remove from localStorage
+        const nameInput = card.querySelector('input[placeholder*="Name"]');
+        const characterName = nameInput ? nameInput.value : '';
+        if (characterName) {
+          try {
+            const savedThumbnails = JSON.parse(localStorage.getItem('storyforge_thumbnails') || '{}');
+            delete savedThumbnails[characterName];
+            localStorage.setItem('storyforge_thumbnails', JSON.stringify(savedThumbnails));
+          } catch (error) {
+            console.error('Failed to remove thumbnail:', error);
+          }
+        }
       });
       
       // Assemble the UI
-      uploadContainer.appendChild(uploadButton);
-      uploadContainer.appendChild(removeButton);
-      uploadContainer.appendChild(helpText);
+      buttonContainer.appendChild(uploadButton);
+      buttonContainer.appendChild(removeButton);
       
-      imageContainer.appendChild(imageDisplay);
-      imageContainer.appendChild(uploadContainer);
-      imageContainer.appendChild(fileInput);
+      controlsContainer.appendChild(label);
+      controlsContainer.appendChild(buttonContainer);
       
-      // Insert at the top of the card content
-      const cardContent = card.querySelector('[data-slot="card-content"]');
-      if (cardContent) {
-        cardContent.insertBefore(imageContainer, cardContent.firstChild);
-      }
+      thumbnailContainer.appendChild(thumbnailDisplay);
+      thumbnailContainer.appendChild(controlsContainer);
+      thumbnailContainer.appendChild(fileInput);
+      
+      // Insert at the end of the card header
+      cardHeader.appendChild(thumbnailContainer);
     });
   }
   
+  // Restore thumbnails from localStorage
+  function restoreThumbnails() {
+    try {
+      const savedThumbnails = JSON.parse(localStorage.getItem('storyforge_thumbnails') || '{}');
+      
+      // Wait a bit for cards to be fully rendered
+      setTimeout(() => {
+        Object.entries(savedThumbnails).forEach(([characterName, dataUrl]) => {
+          // Find the character card by name
+          const characterCard = Array.from(document.querySelectorAll('[data-slot="card"]')).find(card => {
+            const nameInput = card.querySelector('input[placeholder*="Name"]');
+            return nameInput && nameInput.value === characterName;
+          });
+          
+          if (characterCard) {
+            const thumbnailDisplay = characterCard.querySelector('.character-thumbnail-display');
+            const removeButton = characterCard.querySelector('.character-thumbnail-upload button:nth-of-type(2)');
+            if (thumbnailDisplay && dataUrl) {
+              thumbnailDisplay.innerHTML = '';
+              const img = document.createElement('img');
+              img.src = dataUrl;
+              img.alt = 'Character thumbnail';
+              img.style.cssText = 'width: 100%; height: 100%; object-fit: cover;';
+              thumbnailDisplay.appendChild(img);
+              thumbnailDisplay.dataset.imageData = dataUrl;
+              if (removeButton) removeButton.style.display = 'inline-flex';
+            }
+          }
+        });
+      }, 500);
+    } catch (error) {
+      console.error('Failed to restore thumbnails:', error);
+    }
+  }
+
   // Add image upload UI to world building elements
   function enhanceWorldBuildingElements() {
     // Find all world building cards (locations, cultures, etc.)
@@ -916,13 +1003,78 @@ window.addEventListener('load', () => {
     });
   }
   
+  // Restore images from localStorage
+  function restoreImages() {
+    try {
+      const savedImages = localStorage.getItem('storyforge_images');
+      if (!savedImages) return;
+      
+      const imageData = JSON.parse(savedImages);
+      console.log('Restoring images from localStorage:', Object.keys(imageData).length, 'images');
+      
+      // Wait a bit for cards to be fully rendered
+      setTimeout(() => {
+        Object.entries(imageData).forEach(([key, dataUrl]) => {
+          if (key.startsWith('character_')) {
+            const characterName = key.replace('character_', '');
+            const characterCard = Array.from(document.querySelectorAll('[data-slot="card"]')).find(card => {
+              const nameInput = card.querySelector('input[placeholder*="Name"]');
+              return nameInput && nameInput.value === characterName;
+            });
+            
+            if (characterCard) {
+              const imageDisplay = characterCard.querySelector('.character-image-display');
+              const removeButton = characterCard.querySelector('.character-image-upload button:nth-of-type(2)');
+              if (imageDisplay && dataUrl) {
+                imageDisplay.innerHTML = '';
+                const img = document.createElement('img');
+                img.src = dataUrl;
+                img.alt = 'Character image';
+                img.style.cssText = 'width: 100%; height: 100%; object-fit: cover;';
+                imageDisplay.appendChild(img);
+                imageDisplay.dataset.imageData = dataUrl;
+                if (removeButton) removeButton.style.display = 'inline-flex';
+              }
+            }
+          } else if (key.startsWith('world_')) {
+            const elementName = key.replace('world_', '');
+            const worldCard = Array.from(document.querySelectorAll('[data-slot="card"]')).find(card => {
+              const nameInput = card.querySelector('input[placeholder*="Name"]');
+              return nameInput && nameInput.value === elementName;
+            });
+            
+            if (worldCard) {
+              const imageDisplay = worldCard.querySelector('.world-element-image-display');
+              const removeButton = worldCard.querySelector('.world-element-image-upload button:nth-of-type(2)');
+              if (imageDisplay && dataUrl) {
+                imageDisplay.innerHTML = '';
+                const img = document.createElement('img');
+                img.src = dataUrl;
+                img.alt = 'Element reference image';
+                img.style.cssText = 'width: 100%; height: 100%; object-fit: cover;';
+                imageDisplay.appendChild(img);
+                imageDisplay.dataset.imageData = dataUrl;
+                if (removeButton) removeButton.style.display = 'inline-flex';
+              }
+            }
+          }
+        });
+      }, 500);
+    } catch (error) {
+      console.error('Failed to restore images:', error);
+    }
+  }
+  
   // Main initialization
   async function init() {
     await waitForReact();
     
     // Initial enhancement
-    enhanceCharacterCards();
+    // enhanceCharacterCards(); // Removed
     enhanceWorldBuildingElements();
+    
+    // Restore saved images
+    restoreImages();
     
     // Set up mutation observer to handle dynamically added cards
     const observer = new MutationObserver((mutations) => {
@@ -938,8 +1090,9 @@ window.addEventListener('load', () => {
       
       if (shouldEnhance) {
         setTimeout(() => {
-          enhanceCharacterCards();
+          // enhanceCharacterCards(); // Removed
           enhanceWorldBuildingElements();
+          restoreImages();
         }, 100);
       }
     });
