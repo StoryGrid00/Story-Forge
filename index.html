@@ -538,7 +538,15 @@ window.addEventListener('load', () => {
           // Save all uploaded images to localStorage
           const imageData = {};
           
-          // Character images removed
+          // Save character thumbnail images
+          document.querySelectorAll('.character-thumbnail-display[data-image-data]').forEach((display) => {
+            const card = display.closest('[data-slot="card"]');
+            const nameInput = card?.querySelector('input[placeholder*="Name"]');
+            const characterName = nameInput?.value;
+            if (characterName) {
+              imageData[`character_thumbnail_${characterName}`] = display.dataset.imageData;
+            }
+          });
           
           // Save world element images
           document.querySelectorAll('.world-element-image-display[data-image-data]').forEach((display, index) => {
@@ -1015,21 +1023,21 @@ window.addEventListener('load', () => {
       // Wait a bit for cards to be fully rendered
       setTimeout(() => {
         Object.entries(imageData).forEach(([key, dataUrl]) => {
-          if (key.startsWith('character_')) {
-            const characterName = key.replace('character_', '');
+          if (key.startsWith('character_thumbnail_')) {
+            const characterName = key.replace('character_thumbnail_', '');
             const characterCard = Array.from(document.querySelectorAll('[data-slot="card"]')).find(card => {
               const nameInput = card.querySelector('input[placeholder*="Name"]');
               return nameInput && nameInput.value === characterName;
             });
             
             if (characterCard) {
-              const imageDisplay = characterCard.querySelector('.character-image-display');
-              const removeButton = characterCard.querySelector('.character-image-upload button:nth-of-type(2)');
+              const imageDisplay = characterCard.querySelector('.character-thumbnail-display');
+              const removeButton = characterCard.querySelector('.character-thumbnail-upload button:nth-of-type(2)');
               if (imageDisplay && dataUrl) {
                 imageDisplay.innerHTML = '';
                 const img = document.createElement('img');
                 img.src = dataUrl;
-                img.alt = 'Character image';
+                img.alt = 'Character thumbnail';
                 img.style.cssText = 'width: 100%; height: 100%; object-fit: cover;';
                 imageDisplay.appendChild(img);
                 imageDisplay.dataset.imageData = dataUrl;
@@ -1070,11 +1078,12 @@ window.addEventListener('load', () => {
     await waitForReact();
     
     // Initial enhancement
-    // enhanceCharacterCards(); // Removed
+    addThumbnailUpload(); // Add character thumbnails
     enhanceWorldBuildingElements();
     
     // Restore saved images
     restoreImages();
+    restoreThumbnails(); // Restore character thumbnails
     
     // Set up mutation observer to handle dynamically added cards
     const observer = new MutationObserver((mutations) => {
@@ -1090,9 +1099,10 @@ window.addEventListener('load', () => {
       
       if (shouldEnhance) {
         setTimeout(() => {
-          // enhanceCharacterCards(); // Removed
+          addThumbnailUpload(); // Add character thumbnails
           enhanceWorldBuildingElements();
           restoreImages();
+          restoreThumbnails(); // Restore character thumbnails
         }, 100);
       }
     });
